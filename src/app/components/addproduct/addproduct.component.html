@@ -1,6 +1,11 @@
 <form [formGroup]="productform" class="flex flex-col gap-4">
     <input class="border rounded-s" type="text" placeholder="Tên sản phẩm" formControlName="name"/>
     <!-- Để lại ô mô tả ngắn và mô tả sản phẩm -->
+    <label>Mô tả ngắn</label>
+    <angular-editor id="editor1" formControlName="shortdescription" [config]="editorConfig"></angular-editor>
+    <label>Mô tả sản phẩm</label>
+    <angular-editor id="editor2" formControlName="description" [config]="editorConfig"></angular-editor>
+    <!-- ---------------- -->
     <select class="border rounded-s" formControlName="category">
         <option value="">DM1</option>
     </select>
