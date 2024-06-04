@@ -1,0 +1,10 @@
+<form [formGroup]="productform" class="flex flex-col gap-4">
+    <input class="border rounded-s" type="text" placeholder="Tên sản phẩm" formControlName="name"/>
+    <!-- Để lại ô mô tả ngắn và mô tả sản phẩm -->
+    <select class="border rounded-s" formControlName="category">
+        <option value="">DM1</option>
+    </select>
+    <!-- Tạo 1 ô input tải ảnh tạm, sau khi xử lý upload ảnh từ API thì lưu link ảnh trả về vào thumbnails -->
+    <input type="file" (change)="onUpload($event)"/>
+    <img class="w-[90px] h-auto" *ngIf="thumbnail!==''" src="{{thumbnail}}"/>
+</form>
