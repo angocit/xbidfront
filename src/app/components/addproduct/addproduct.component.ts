@@ -23,6 +23,7 @@ export class AddproductComponent {
       step: new FormControl('',Validators.required)
     })
     thumbnail:string = ''
+    images:any;
     editorConfig: AngularEditorConfig = {
       editable: true,
         spellcheck: true,
@@ -76,5 +77,33 @@ export class AddproductComponent {
               
             }
           )
+    }
+    onAnyUpload = (e:any)=>{
+      console.log(e.target.files);
+      
+      const dataform = new FormData();
+      for(let i=0; i<e.target.files.length; i++){
+        dataform.append('file', e.target.files[i]) 
+      }
+      this.uploadService.AnyuploadImage(dataform).subscribe(
+        (data:any)=>{
+            console.log(data.url);  
+            // Lấy danh sách ảnh trả về từ API
+            const listimg = data.url
+            // Bổ sung tiền tố http://localhost:8000( chính là base api url)
+            for (let i=0; i<listimg.length; i++){
+              listimg[i] =  this.uploadService.API_URL+listimg[i]
+            }  
+             console.log(listimg);
+             // gán mảng ảnh sau khi đã bổ sung tiền tố http
+             this.images = listimg     
+             // Set giá trị cho thuộc tính images của productform       
+            this.productform.controls.images.setValue(listimg)           
+        }
+        ,error=>{
+          console.log(error);
+          
+        }
+      ) 
     }
 }

@@ -12,4 +12,10 @@
     <!-- Tạo 1 ô input tải ảnh tạm, sau khi xử lý upload ảnh từ API thì lưu link ảnh trả về vào thumbnails -->
     <input type="file" (change)="onUpload($event)"/>
     <img class="w-[90px] h-auto" *ngIf="thumbnail!==''" src="{{thumbnail}}"/>
+    <input type="file" multiple (change)="onAnyUpload($event)"/>
+    <div class="flex">
+        @for (img of images; track $index) {
+            <img class="w-[90px]" src="{{img}}"/>
+        }
+    </div>
 </form>

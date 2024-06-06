@@ -10,4 +10,7 @@ export class UploadService {
   uploadImage = (data:any)=>{
       return this.http.post(this.API_URL+'/files/upload',data)
   }
+  AnyuploadImage = (data:any)=>{
+    return this.http.post(this.API_URL+'/files/anyupload',data)
+  }
 }
